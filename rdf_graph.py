@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF, RDFS, FOAF, OWL, XSD, DC, DCTERMS
 
-API_URL = "http://79.36.162.30/php/PalermoAbout2.php";
+API_URL = "YOUR_API_URL";
 def urify(ns, testo):
     testo=testo.replace(" ","_").replace(".","")
     return ns+urllib.parse.quote(testo)
