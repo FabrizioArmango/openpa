@@ -58,6 +58,10 @@ g.bind("cpo", cpo)
 g.bind("geo", geo)
 ####### ->
 
+resourceURI = "http://www.comune.palermo.it/resource/")
+gs = g.resource(resourceURI)
+gs.set(RDF.type, RDF.Class)
+
 
 
 # CHURCHES
