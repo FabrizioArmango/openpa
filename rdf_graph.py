@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF, RDFS, FOAF, OWL, XSD, DC, DCTERMS
 
-API_URL = "YOUR_API_URL";
+API_URL = "http://79.36.162.30/php/PalermoAbout2.php";
 def urify(ns, testo):
     testo=testo.replace(" ","_").replace(".","")
     return ns+urllib.parse.quote(testo)
@@ -49,13 +49,15 @@ dbp = Namespace("http://dbpedia.org/property/")
 cpo = Namespace("http://www.comune.palermo.it/ontology/")
 geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 
-appa = NA("")
+pldo = Namespace("http://palermo.linked-data.eu/ontology")
 ####### ->
 # Namespace Bindings
 g.bind("dbo", dbo)
 g.bind("dbp", dbp)
 g.bind("cpo", cpo)
 g.bind("geo", geo)
+
+g.bind("pldo", pldo)
 ####### ->
 
 
@@ -81,11 +83,13 @@ for data_record in churchXML:
 for data_record in cinemaXML:
     cinemaName = data_record.find("NAME").text
     print(cinemaName)
-    cinemaURI = urify("http://www.comune.palermo.it/resource/cinemas/", cinemaName)
+    cinemaURI = urify("http://elsinor.linked-data.eu/cinemas/", cinemaName)    
     gs = g.resource(cinemaURI)
     gs.set(RDF.type, cpo.Cinema)
-
     gs.set(cpo.name, Literal(cinemaName, lang='it'))
+    cinemaURI_PA = urify("http://www.comune.palermo.it/resource/cinemas/", cinemaName)
+    gs.set(OWL.sameAs, URIRef(cinemaURI_PA))
+    
 
     if data_record.find("WEBSITE") is not None:
         gs.set(dbp.website, URIRef(data_record.find("WEBSITE").text))
