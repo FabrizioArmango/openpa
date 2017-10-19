@@ -1,11 +1,3 @@
-#
-##
-###
-#### :: Palermo LinkedData Ontology :: pldo
-###
-##
-#
-
 pldo = Namespace("http://palermo.linked-data.eu/ontology/")
 
 g = Graph ()
@@ -74,12 +66,12 @@ gs.set(RDFS.subClassOf, pldo.Risorsa)
 ##### Proprietà 
 # nome
 gs = g.resource(pldo.nome)
-gs.set(RDF.type, RDF.Property)
+gs.set(RDF.type, RDFS.Property)
 gs.set(RDFS.domain, pldo.Risorsa)
 gs.set(RDFS.range, RDFS.Literal)
 
 # vicinoA
 gs = g.resource(pldo.vicinoA)
-gs.set(RDF.type, RDF.Property)
+gs.set(RDF.type, RDFS.Property)
 gs.set(RDFS.domain, pldo.Luogo)
 gs.set(RDFS.range, lgdo:Amenity)
