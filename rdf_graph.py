@@ -34,13 +34,16 @@ dbp = Namespace("http://dbpedia.org/property/")
 cpo = Namespace("http://www.comune.palermo.it/ontology/")
 geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 
-pldo = Namespace("http://palermo.linked-data.eu/ontology")
+pldo = Namespace("http://palermo.linked-data.eu/ontology/")
 ####### ->
 # Namespace Bindings
 g.bind("dbo", dbo)
 g.bind("dbp", dbp)
 g.bind("cpo", cpo)
 g.bind("geo", geo)
+
+#added to avoid output ns1
+g.bind("owl", OWL)
 
 g.bind("pldo", pldo)
 ####### ->
