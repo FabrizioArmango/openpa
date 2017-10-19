@@ -13,32 +13,17 @@ def urify(ns, testo):
 tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=churches'))
 churchXML = tree.getroot()
 
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=cinemas'))
-cinemaXML = tree.getroot()
-
 tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=theatres'))
 theatreXML = tree.getroot()
 
 tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=typicalfoods'))
 foodXML = tree.getroot()
 
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=pubs'))
-pubXML = tree.getroot()
-
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=cocktailbars'))
-cocktailbarXML = tree.getroot()
-
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=winebars'))
-winebarXML = tree.getroot()
-
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=streetfoods'))
-streetfoodXML = tree.getroot()
-
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=restaurants'))
-restaurantXML = tree.getroot()
-
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=discos'))
-discoXML = tree.getroot()
+placeList= [“cinema”, “pub”, “cocktailbar”, “winebar”, “streetfood”, “restaurant”, “disco”]
+placeXML = ()
+for place in placeList:
+tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=’ + place + ‘s’))
+placeXML= tree.getroot()
 
 
 g = Graph()
@@ -79,38 +64,40 @@ for data_record in churchXML:
     gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
     gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))
 
-# CINEMAS
-for data_record in cinemaXML:
-    cinemaName = data_record.find("NAME").text
-    print(cinemaName)
-    cinemaURI = urify("http://elsinor.linked-data.eu/cinemas/", cinemaName)    
-    gs = g.resource(cinemaURI)
-    gs.set(RDF.type, cpo.Cinema)
-    gs.set(cpo.name, Literal(cinemaName, lang='it'))
-    cinemaURI_PA = urify("http://www.comune.palermo.it/resource/cinemas/", cinemaName)
-    gs.set(OWL.sameAs, URIRef(cinemaURI_PA))
-    
+# 
 
-    if data_record.find("WEBSITE") is not None:
-        gs.set(dbp.website, URIRef(data_record.find("WEBSITE").text))
-    
-    if data_record.find("EMAIL") is not None:
-        gs.set(dbp.email, Literal(data_record.find("EMAIL").text))
-    
-    if data_record.find("LOCATION") is not None:
-        location = data_record.find("LOCATION") 
+for place in placeList:
+    for data_record in placeXML:
+        placeName = data_record.find("NAME").text
+        print(placeName)
+        placeURI = urify("http://elsinor.linked-data.eu/resource/" + place + "s/", placeName)    
+        gs = g.resource(placeURI)
+        gs.set(RDF.type, pldo.Cinema)
+        gs.set(cpo.name, Literal(cinemaName, lang='it'))
+        cinemaURI_PA = urify("http://www.comune.palermo.it/resource/" + place + "s/", placeName)
+        gs.set(OWL.sameAs, URIRef(cinemaURI_PA))
+        
 
-        if location.find("ADDRESS")  is not None:              
-            gs.set(dbp.location, Literal(location.find("ADDRESS").text))
+        if data_record.find("WEBSITE") is not None:
+            gs.set(dbp.website, URIRef(data_record.find("WEBSITE").text))
+        
+        if data_record.find("EMAIL") is not None:
+            gs.set(dbp.email, Literal(data_record.find("EMAIL").text))
+        
+        if data_record.find("LOCATION") is not None:
+            location = data_record.find("LOCATION") 
 
-        if location.find("CITY")  is not None:
-            gs.set(dbp.city, Literal(location.find("CITY").text))
+            if location.find("ADDRESS")  is not None:              
+                gs.set(dbp.location, Literal(location.find("ADDRESS").text))
 
-        if location.find("LAT") is not None:
-            gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
+            if location.find("CITY")  is not None:
+                gs.set(dbp.city, Literal(location.find("CITY").text))
 
-        if location.find("LNG") is not None:
-            gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))  
+            if location.find("LAT") is not None:
+                gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
+
+            if location.find("LNG") is not None:
+                gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))  
 
 # THEATRES
 for data_record in theatreXML:
@@ -145,3 +132,5 @@ for data_record in theatreXML:
 
 OUTPUT_PATH = '/comune_turismo.ttl'
 g.serialize(destination=OUTPUT_PATH, format='turtle')
+
+
