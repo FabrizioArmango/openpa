@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF, RDFS, FOAF, OWL, XSD, DC, DCTERMS
 
-API_URL = "";
+API_URL = "http://localhost/php/PalermoAbout2.php";
 def urify(ns, testo):
     testo=testo.replace(" ","_").replace(".","")
     return ns+urllib.parse.quote(testo)
@@ -19,11 +19,11 @@ theatreXML = tree.getroot()
 tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=typicalfoods'))
 foodXML = tree.getroot()
 
-placeList= [“cinema”, “pub”, “cocktailbar”, “winebar”, “streetfood”, “restaurant”, “disco”]
-placeXML = ()
+placeList= ["cinema", "pub", "cocktailbar", "winebar", "streetfood", "restaurant", "disco"]
+placeXML = {}
 for place in placeList:
-tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=’ + place + ‘s’))
-placeXML= tree.getroot()
+    tree = ET.parse(urllib.request.urlopen(API_URL + '?listOf=' + place + 's'))
+    placeXML[place] = tree.getroot()
 
 
 g = Graph()
@@ -53,12 +53,12 @@ for data_record in churchXML:
     print(churchName.find("en").text)
     churchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
     gs = g.resource(churchURI)
-    gs.set(RDF.type, cpo.Church)
+    gs.set(RDF.type, pldo.Chiesa)
 
     for name in churchName:
-        gs.add(cpo.name, Literal(name.text, lang=name.tag))
+        gs.add(pldo.nome, Literal(name.text, lang=name.tag))
 
-    gs.set(cpo.image, URIRef(data_record.find("IMAGE").text))
+    gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
 
     location = data_record.find("LOCATION")    
     gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
@@ -67,15 +67,15 @@ for data_record in churchXML:
 # 
 
 for place in placeList:
-    for data_record in placeXML:
+    for data_record in placeXML[place]:
         placeName = data_record.find("NAME").text
         print(placeName)
         placeURI = urify("http://elsinor.linked-data.eu/resource/" + place + "s/", placeName)    
         gs = g.resource(placeURI)
-        gs.set(RDF.type, pldo.Cinema)
-        gs.set(cpo.name, Literal(cinemaName, lang='it'))
-        cinemaURI_PA = urify("http://www.comune.palermo.it/resource/" + place + "s/", placeName)
-        gs.set(OWL.sameAs, URIRef(cinemaURI_PA))
+        gs.set(RDF.type, pldo[place.capitalize()])
+        gs.set(pldo.nome, Literal(placeName, lang='it'))
+        placeURI_PA = urify("http://www.comune.palermo.it/resource/" + place + "s/", placeName)
+        gs.set(OWL.sameAs, URIRef(placeURI_PA))
         
 
         if data_record.find("WEBSITE") is not None:
@@ -105,9 +105,9 @@ for data_record in theatreXML:
     print(theatreName)
     theatreURI = urify("http://www.comune.palermo.it/resource/theatres/", theatreName)
     gs = g.resource(theatreURI)
-    gs.set(RDF.type, cpo.Theatre)
+    gs.set(RDF.type, pldo.Teatro)
 
-    gs.set(cpo.name, Literal(theatreName, lang='it'))
+    gs.set(pldo.nome, Literal(theatreName, lang='it'))
     gs.set(geo.lat, Literal(data_record.find("SEATS").text, datatype=XSD.integer))
 
 
@@ -130,7 +130,7 @@ for data_record in theatreXML:
     #mo.set(cpo.indirizzo, Literal(data_record.find("INDIRIZZO").text, lang='it'))
     #gs.set(cpo.gestoredi, mo)
 
-OUTPUT_PATH = '/comune_turismo.ttl'
+OUTPUT_PATH = 'grafo.ttl'
 g.serialize(destination=OUTPUT_PATH, format='turtle')
 
 
