@@ -4,8 +4,9 @@ from dicttoxml import dicttoxml
 import xml.etree.ElementTree as ET
 from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF, RDFS, FOAF, OWL, XSD, DC, DCTERMS
+import requests
 
-API_URL = "http://localhost/php/PalermoAbout2.php";
+API_URL = "http://palermo.linked-data.eu/php/PalermoAbout2.php";
 def urify(ns, testo):
     testo=testo.replace(" ","_").replace(".","")
     return ns+urllib.parse.quote(testo)
@@ -33,7 +34,6 @@ dbo = Namespace("http://dbpedia.org/ontology/")
 dbp = Namespace("http://dbpedia.org/property/")
 cpo = Namespace("http://www.comune.palermo.it/ontology/")
 geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
-
 pldo = Namespace("http://palermo.linked-data.eu/ontology/")
 ####### ->
 # Namespace Bindings
@@ -44,30 +44,25 @@ g.bind("geo", geo)
 
 #added to avoid output ns1
 g.bind("owl", OWL)
-
 g.bind("pldo", pldo)
 ####### ->
 
 
 # FOOD
 for data_record in foodXML:
-    churchName = data_record.find("NAME")
-    print(churchName.find("en").text)
-    churchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
-    gs = g.resource(churchURI)
-    gs.set(RDF.type, pldo.Chiesa)
+    foodName = data_record.find("NAME")
+    print(foodName.find("en").text)
+    foodURI = urify("http://dbpedia.org/resource/", foodName.find("en").text)
+    gs = g.resource(foodURI)
+    gs.set(RDF.type, pldo.Food)
 
-    for name in churchName:
+    for name in foodName:
         gs.add(pldo.nome, Literal(name.text, lang=name.tag))
 
     #gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
 
-    location = data_record.find("LOCATION")    
-    gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
-    gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))
-
-    dbPediaChurchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
-    gs.set(OWL.sameAs, URIRef(dbPediaChurchURI))
+    dbPediaFoodURI = urify("http://dbpedia.org/resource/", foodName.find("en").text)
+    gs.set(OWL.sameAs, URIRef(dbPediaFoodURI))
 
     #SETTARE I pldo.vicinoA
 
@@ -84,10 +79,17 @@ for data_record in churchXML:
         gs.add(pldo.nome, Literal(name.text, lang=name.tag))
 
     #gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
-
-    location = data_record.find("LOCATION")    
-    gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
-    gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))
+    location = data_record.find("LOCATION")
+    if location.find("LAT") is not None:
+        if location.find("LNG") is not None:
+            lat = location.find("LAT").text
+            lng = location.find("LNG").text
+            nearByChurchURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
+            r = requests.get(nearByChurchURI)
+            result = json.loads(r.text)
+            gs.set(pldo.vicinoA, URIRef(""))
+            for data in result:
+                gs.add(pldo.vicinoA, URIRef(data))
 
     dbPediaChurchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
     gs.set(OWL.sameAs, URIRef(dbPediaChurchURI))
@@ -127,9 +129,17 @@ for place in placeList:
             #geo.lat si accolla il nostro luogo?
             if location.find("LAT") is not None:
                 gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
-
-            if location.find("LNG") is not None:
-                gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))  
+                
+                if location.find("LNG") is not None:
+                    gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))
+                    lat = location.find("LAT").text
+                    lng = location.find("LNG").text
+                    nearByPlaceURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
+                    r = requests.get(nearByPlaceURI)
+                    result = json.loads(r.text)
+                    gs.set(pldo.vicinoA, URIRef(""))
+                    for data in result:
+                        gs.add(pldo.vicinoA, URIRef(data))
 
 # THEATRES
 for data_record in theatreXML:
@@ -151,15 +161,20 @@ for data_record in theatreXML:
 
         if location.find("LAT") is not None:
             gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
-
-        if location.find("LNG") is not None:
-            gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))        
-
+            
+            if location.find("LNG") is not None:
+                gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))        
+                lat = location.find("LAT").text
+                lng = location.find("LNG").text
+                nearByTheatresURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
+                r = requests.get(nearByTheatresURI)
+                result = json.loads(r.text)
+                gs.set(pldo.vicinoA, URIRef(""))
+                for data in result:
+                    gs.add(pldo.vicinoA, URIRef(data))
 
     #SETTARE I pldo.vicinoA
 
 
 OUTPUT_PATH = 'grafo.ttl'
 g.serialize(destination=OUTPUT_PATH, format='turtle')
-
-
