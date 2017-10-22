@@ -49,6 +49,28 @@ g.bind("pldo", pldo)
 ####### ->
 
 
+# FOOD
+for data_record in foodXML:
+    churchName = data_record.find("NAME")
+    print(churchName.find("en").text)
+    churchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
+    gs = g.resource(churchURI)
+    gs.set(RDF.type, pldo.Chiesa)
+
+    for name in churchName:
+        gs.add(pldo.nome, Literal(name.text, lang=name.tag))
+
+    #gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
+
+    location = data_record.find("LOCATION")    
+    gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
+    gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))
+
+    dbPediaChurchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
+    gs.set(OWL.sameAs, URIRef(dbPediaChurchURI))
+
+    #SETTARE I pldo.vicinoA
+
 
 # CHURCHES
 for data_record in churchXML:
@@ -61,19 +83,23 @@ for data_record in churchXML:
     for name in churchName:
         gs.add(pldo.nome, Literal(name.text, lang=name.tag))
 
-    gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
+    #gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
 
     location = data_record.find("LOCATION")    
     gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
     gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))
 
+    dbPediaChurchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
+    gs.set(OWL.sameAs, URIRef(dbPediaChurchURI))
+
+    #SETTARE I pldo.vicinoA
 # 
 
 for place in placeList:
     for data_record in placeXML[place]:
         placeName = data_record.find("NAME").text
         print(placeName)
-        placeURI = urify("http://elsinor.linked-data.eu/resource/" + place + "s/", placeName)    
+        placeURI = urify("http://palermo.linked-data.eu/resource/" + place + "s/", placeName)    
         gs = g.resource(placeURI)
         gs.set(RDF.type, pldo[place.capitalize()])
         gs.set(pldo.nome, Literal(placeName, lang='it'))
@@ -90,12 +116,15 @@ for place in placeList:
         if data_record.find("LOCATION") is not None:
             location = data_record.find("LOCATION") 
 
+            #dbp.location si accolla il nostro luogo?
             if location.find("ADDRESS")  is not None:              
                 gs.set(dbp.location, Literal(location.find("ADDRESS").text))
 
+            #dbp.city si accolla il nostro luogo?
             if location.find("CITY")  is not None:
                 gs.set(dbp.city, Literal(location.find("CITY").text))
 
+            #geo.lat si accolla il nostro luogo?
             if location.find("LAT") is not None:
                 gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
 
@@ -111,7 +140,7 @@ for data_record in theatreXML:
     gs.set(RDF.type, pldo.Teatro)
 
     gs.set(pldo.nome, Literal(theatreName, lang='it'))
-    gs.set(geo.lat, Literal(data_record.find("SEATS").text, datatype=XSD.integer))
+    gs.set(pldo.posti, Literal(data_record.find("SEATS").text, datatype=XSD.nonNegativeInteger))
 
 
     if data_record.find("LOCATION") is not None:
@@ -126,12 +155,9 @@ for data_record in theatreXML:
         if location.find("LNG") is not None:
             gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))        
 
-    #moden=data_record.find("IMAGE").text
-    #mouri = urify("http://www.comune.palermo.it/resource/monumenti/", moden)
-    #mo = g.resource(mouri)
-    #mo.set(RDF.type, cpo.Monumento)
-    #mo.set(cpo.indirizzo, Literal(data_record.find("INDIRIZZO").text, lang='it'))
-    #gs.set(cpo.gestoredi, mo)
+
+    #SETTARE I pldo.vicinoA
+
 
 OUTPUT_PATH = 'grafo.ttl'
 g.serialize(destination=OUTPUT_PATH, format='turtle')
