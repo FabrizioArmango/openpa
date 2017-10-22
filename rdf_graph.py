@@ -85,9 +85,7 @@ for data_record in churchXML:
             lat = location.find("LAT").text
             lng = location.find("LNG").text
             nearByChurchURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
-            r = requests.get(nearByChurchURI)
-            result = json.loads(r.text)
-            gs.set(pldo.vicinoA, URIRef(""))
+            result = requests.get(nearByChurchURI).json()
             for data in result:
                 gs.add(pldo.vicinoA, URIRef(data))
 
@@ -135,9 +133,7 @@ for place in placeList:
                     lat = location.find("LAT").text
                     lng = location.find("LNG").text
                     nearByPlaceURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
-                    r = requests.get(nearByPlaceURI)
-                    result = json.loads(r.text)
-                    gs.set(pldo.vicinoA, URIRef(""))
+                    result = requests.get(nearByPlaceURI).json()
                     for data in result:
                         gs.add(pldo.vicinoA, URIRef(data))
 
@@ -167,9 +163,7 @@ for data_record in theatreXML:
                 lat = location.find("LAT").text
                 lng = location.find("LNG").text
                 nearByTheatresURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
-                r = requests.get(nearByTheatresURI)
-                result = json.loads(r.text)
-                gs.set(pldo.vicinoA, URIRef(""))
+                result = requests.get(nearByTheatresURI).json()
                 for data in result:
                     gs.add(pldo.vicinoA, URIRef(data))
 
