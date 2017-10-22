@@ -64,9 +64,6 @@ for data_record in foodXML:
     dbPediaFoodURI = urify("http://dbpedia.org/resource/", foodName.find("en").text)
     gs.set(OWL.sameAs, URIRef(dbPediaFoodURI))
 
-    #SETTARE I pldo.vicinoA
-
-
 # CHURCHES
 for data_record in churchXML:
     churchName = data_record.find("NAME")
@@ -92,8 +89,6 @@ for data_record in churchXML:
     dbPediaChurchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
     gs.set(OWL.sameAs, URIRef(dbPediaChurchURI))
 
-    #SETTARE I pldo.vicinoA
-# 
 
 for place in placeList:
     for data_record in placeXML[place]:
@@ -116,15 +111,12 @@ for place in placeList:
         if data_record.find("LOCATION") is not None:
             location = data_record.find("LOCATION") 
 
-            #dbp.location si accolla il nostro luogo?
             if location.find("ADDRESS")  is not None:              
                 gs.set(dbp.location, Literal(location.find("ADDRESS").text))
 
-            #dbp.city si accolla il nostro luogo?
             if location.find("CITY")  is not None:
                 gs.set(dbp.city, Literal(location.find("CITY").text))
 
-            #geo.lat si accolla il nostro luogo?
             if location.find("LAT") is not None:
                 gs.set(geo.lat, Literal(location.find("LAT").text, datatype=XSD.decimal))
                 
@@ -166,8 +158,6 @@ for data_record in theatreXML:
                 result = requests.get(nearByTheatresURI).json()
                 for data in result:
                     gs.add(pldo.vicinoA, URIRef(data))
-
-    #SETTARE I pldo.vicinoA
 
 
 OUTPUT_PATH = 'grafo.ttl'
