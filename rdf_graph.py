@@ -74,7 +74,7 @@ for data_record in churchXML:
     enName = churchName.find("en").text
     enTag = churchName.find("en").tag
     print(enName)
-    churchURI = urify("http://palermo.linked-data.eu/", enName)
+    churchURI = urify("http://palermo.linked-data.eu/resource/churches/", enName)
     gs = g.resource(churchURI)
     gs.set(RDF.type, pldo.Chiesa)
     
@@ -142,13 +142,15 @@ for place in placeList:
 for data_record in theatreXML:
     theatreName = data_record.find("NAME").text
     print(theatreName)
-    theatreURI = urify("http://www.comune.palermo.it/resource/theatres/", theatreName)
+    theatreURI = urify("http://palermo.linked-data.eu/resource/theatres/", theatreName)
     gs = g.resource(theatreURI)
     gs.set(RDF.type, pldo.Teatro)
 
     gs.set(pldo.nome, Literal(theatreName, lang='it'))
     gs.set(pldo.posti, Literal(data_record.find("SEATS").text, datatype=XSD.nonNegativeInteger))
 
+    placeURI_PA = urify("http://www.comune.palermo.it/resource/theatres/", placeName)
+    gs.set(OWL.sameAs, URIRef(placeURI_PA))
 
     if data_record.find("LOCATION") is not None:
         location = data_record.find("LOCATION") 
