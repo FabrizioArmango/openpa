@@ -49,32 +49,38 @@ g.bind("pldo", pldo)
 
 
 # FOOD
+# Non adoperiamo nessun tipo di modifica\bonifica\link a questo dato di dbpedia, dobbiamo lasciarlo ?
 for data_record in foodXML:
     foodName = data_record.find("NAME")
-    print(foodName.find("en").text)
-    foodURI = urify("http://dbpedia.org/resource/", foodName.find("en").text)
+    enName = foodName.find("en").text
+    print(enName)
+    foodURI = urify("http://dbpedia.org/resource/", enName)
     gs = g.resource(foodURI)
-    gs.set(RDF.type, pldo.Food)
+    gs.set(RDF.type, pldo.CiboTipico)
 
-    for name in foodName:
-        gs.add(pldo.nome, Literal(name.text, lang=name.tag))
+    #for name in foodName:
+    #    gs.add(pldo.nome, Literal(name.text, lang=name.tag))
+    gs.set(pldo.nome, Literal(enName, lang="en"))
 
     #gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
 
-    dbPediaFoodURI = urify("http://dbpedia.org/resource/", foodName.find("en").text)
-    gs.set(OWL.sameAs, URIRef(dbPediaFoodURI))
+    #dbPediaFoodURI = urify("http://dbpedia.org/resource/", foodName.find("en").text)
+    #gs.set(OWL.sameAs, URIRef(dbPediaFoodURI))
 
     
 # CHURCHES
 for data_record in churchXML:
-    churchName = data_record.find("NAME")
-    print(churchName.find("en").text)
-    churchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
+    churchName = data_record.find("NAME")    
+    enName = churchName.find("en").text
+    print(enName)
+    churchURI = urify("http://palermo.linked-data.eu/", enName)
     gs = g.resource(churchURI)
     gs.set(RDF.type, pldo.Chiesa)
-
-    for name in churchName:
-        gs.add(pldo.nome, Literal(name.text, lang=name.tag))
+    
+    #for name in churchName:
+    #    gs.add(pldo.nome, Literal(name.text, lang=name.tag))
+    gs.set(pldo.nome, Literal(enName, lang="en"))
+    
 
     #gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
     location = data_record.find("LOCATION")
