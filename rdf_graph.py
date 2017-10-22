@@ -64,6 +64,7 @@ for data_record in foodXML:
     dbPediaFoodURI = urify("http://dbpedia.org/resource/", foodName.find("en").text)
     gs.set(OWL.sameAs, URIRef(dbPediaFoodURI))
 
+    
 # CHURCHES
 for data_record in churchXML:
     churchName = data_record.find("NAME")
@@ -81,14 +82,14 @@ for data_record in churchXML:
         if location.find("LNG") is not None:
             lat = location.find("LAT").text
             lng = location.find("LNG").text
-            nearByChurchURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
-            result = requests.get(nearByChurchURI).json()
+            nearByChurchURL = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
+            result = requests.get(nearByChurchURL).json()
             for data in result:
                 gs.add(pldo.vicinoA, URIRef(data))
 
     dbPediaChurchURI = urify("http://dbpedia.org/resource/", churchName.find("en").text)
     gs.set(OWL.sameAs, URIRef(dbPediaChurchURI))
-
+    
 
 for place in placeList:
     for data_record in placeXML[place]:
@@ -124,8 +125,8 @@ for place in placeList:
                     gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))
                     lat = location.find("LAT").text
                     lng = location.find("LNG").text
-                    nearByPlaceURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
-                    result = requests.get(nearByPlaceURI).json()
+                    nearByPlaceURL = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
+                    result = requests.get(nearByPlaceURL).json()
                     for data in result:
                         gs.add(pldo.vicinoA, URIRef(data))
 
@@ -154,11 +155,11 @@ for data_record in theatreXML:
                 gs.set(geo.lng, Literal(location.find("LNG").text, datatype=XSD.decimal))        
                 lat = location.find("LAT").text
                 lng = location.find("LNG").text
-                nearByTheatresURI = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
-                result = requests.get(nearByTheatresURI).json()
+                nearByTheatresURL = "http://palermo.linked-data.eu:3000/?lat="+lat+"&lng="+lng
+                result = requests.get(nearByTheatresURL).json()
                 for data in result:
                     gs.add(pldo.vicinoA, URIRef(data))
 
-
+                    
 OUTPUT_PATH = 'grafo.ttl'
 g.serialize(destination=OUTPUT_PATH, format='turtle')
