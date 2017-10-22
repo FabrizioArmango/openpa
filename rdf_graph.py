@@ -47,6 +47,10 @@ g.bind("owl", OWL)
 g.bind("pldo", pldo)
 ####### ->
 
+resourceURI = "http://www.comune.palermo.it/resource/")
+gs = g.resource(resourceURI)
+gs.set(RDF.type, RDF.Class)
+
 
 # FOOD
 for data_record in foodXML:
