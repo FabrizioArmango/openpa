@@ -23,3 +23,6 @@
 | Dataset richiesto da un cittadino | DATASET ELABORATO DALL'UFFICIO |
 
 # VIS_DATASET_TURISMO02.xml
+#### https://www.comune.palermo.it/xmls/VIS_DATASET_TURISMO02.xml
+
+- get info from pa uri
