@@ -1,4 +1,5 @@
 # teatri_privati_-_gen-dic-2016.json
+#### https://comune.palermo.it/opendata_dld.php?id=547
 | Informazioni | ... |
 | --- | --- |
 | Titolo | TEATRI PRIVATI - GENNAIO/DICEMBRE 2016 |
@@ -20,3 +21,5 @@
 | Codifica caratteri | UTF-8 |
 | URI permanente | https://www.comune.palermo.it/opendata_dld.php?id=547 |
 | Dataset richiesto da un cittadino | DATASET ELABORATO DALL'UFFICIO |
+
+# VIS_DATASET_TURISMO02.xml
