@@ -1,0 +1,173 @@
+[
+  {
+    "teatro": "Teatrino dei pupi",
+    "ubicazione": "Via Collegio di Maria, 17",
+    "capienza [posti]": 78,
+    "gestore del teatro": "Ass.ne Culturale Teatrale Carlo Magno",
+    "sede legale": "Via Collegio di Maria, 17",
+    "recapiti": "0918146971\n3475792257",
+    "legale rappresentante": "Vincenzo Mancuso"
+  },
+  {
+    "teatro": "Teatrino dei pupi",
+    "ubicazione": "Via Bara all’Olivella, 95",
+    "capienza [posti]": 90,
+    "gestore del teatro": "Ass.ne Figli d’Arte Cuticchio",
+    "sede legale": "Via Bara all’Olivella, 95",
+    "recapiti": "091323400\nFax 091335922",
+    "legale rappresentante": "Girolamo Cuticchio"
+  },
+  {
+    "teatro": "Teatrino Ditirammu",
+    "ubicazione": "Via Torremuzza, 6",
+    "capienza [posti]": 52,
+    "gestore del teatro": "Ass.ne Ditirammu",
+    "sede legale": "Via Torremuzza, 6",
+    "recapiti": "0916177865\n3347262300",
+    "legale rappresentante": "Vito Parrinello"
+  },
+  {
+    "teatro": "Teatro Agricantus",
+    "ubicazione": "Via Nicolò Garzilli, 89",
+    "capienza [posti]": 150,
+    "gestore del teatro": "Agricantus Coop. Culturale Sociale",
+    "sede legale": "Via Nicolò Garzilli, 89",
+    "recapiti": "091306936\n3387282675",
+    "legale rappresentante": "Giuseppa Lelio"
+  },
+  {
+    "teatro": "Teatro Al Massimo",
+    "ubicazione": "Piazza verdi, 1",
+    "capienza [posti]": 871,
+    "gestore del teatro": "Teatro Al Massimo Stabile Privato di Palermo Soc. Consortile a r.l.",
+    "sede legale": "Piazza verdi, 1",
+    "recapiti": 91589575,
+    "legale rappresentante": "Aldo Morgante"
+  },
+  {
+    "teatro": "Teatro Cantunera",
+    "ubicazione": "Via Renato Fucini, 3",
+    "capienza [posti]": 90,
+    "gestore del teatro": "Ass.ne Città dell’Arte",
+    "sede legale": "Via Renato Fucini, 3",
+    "recapiti": "091530233\n3295670724",
+    "legale rappresentante": "Giovanni D’Oca"
+  },
+  {
+    "teatro": "Teatro Colosseum",
+    "ubicazione": "Via Guido Rossa, 7",
+    "capienza [posti]": 190,
+    "gestore del teatro": "Ass.ne Formapalermo 2010",
+    "sede legale": "Via G. Pitrè",
+    "recapiti": 3492933001,
+    "legale rappresentante": "Orazio Bottiglieri"
+  },
+  {
+    "teatro": "Teatro Crystal",
+    "ubicazione": "Via Mater Dolorosa, 64/a",
+    "capienza [posti]": 358,
+    "gestore del teatro": "Teatro Europa Picc. Soc. Coop a r.l.",
+    "sede legale": "Via Mater Dolorosa, 64/a",
+    "recapiti": "0916710494\n3497529536",
+    "legale rappresentante": "Rita La Mattina"
+  },
+  {
+    "teatro": "Teatro Daedalum",
+    "ubicazione": "Via Gesù e Maria al Papireto, 8",
+    "capienza [posti]": 60,
+    "gestore del teatro": "Ass.ne Daedalum",
+    "sede legale": "Via Gesù e Maria al Papireto, 8",
+    "recapiti": 3284164835,
+    "legale rappresentante": "Rossana Dato"
+  },
+  {
+    "teatro": "Teatro dei pupi",
+    "ubicazione": "Piazzetta A. Pasqualino, 5",
+    "capienza [posti]": 75,
+    "gestore del teatro": "Ass.ne per la Conservazione delle Tradizioni Popolari A. Pasqualino",
+    "sede legale": "Piazzetta A. Pasqualino, 5",
+    "recapiti": 91328060,
+    "legale rappresentante": "Marianne Vibaek"
+  },
+  {
+    "teatro": "Teatro delle Balate",
+    "ubicazione": "Via delle Balate, 3/5",
+    "capienza [posti]": 51,
+    "gestore del teatro": "Associazione Liberiteatri",
+    "sede legale": "Via delle Balate, 3/5",
+    "recapiti": "0912735153\n3348830336",
+    "legale rappresentante": "Antonina Lombardino"
+  },
+  {
+    "teatro": "Teatro Finocchiaro",
+    "ubicazione": "Via Roma, 184",
+    "capienza [posti]": 226,
+    "gestore del teatro": "I Bohemiens S.r.l.s.",
+    "sede legale": "Via Roma, 184",
+    "recapiti": "091334569\n3318799115\nteatrofinocchiaro@gmail.com",
+    "legale rappresentante": "Katiuska Falbo"
+  },
+  {
+    "teatro": "Teatro Franco Zappalà",
+    "ubicazione": "Via dell’Autonomia Siciliana, 123/a",
+    "capienza [posti]": 772,
+    "gestore del teatro": "Coop. Figli d’Arte Franco Zappalà",
+    "sede legale": "Via dell’Autonomia Siciliana, 123/a",
+    "recapiti": 91543380,
+    "legale rappresentante": "Antonino Zappalà"
+  },
+  {
+    "teatro": "Teatro Golden",
+    "ubicazione": "Via Terra Santa, 60",
+    "capienza [posti]": 1032,
+    "gestore del teatro": "Quintarte s.r.l.",
+    "sede legale": "Via Terra Santa, 60",
+    "recapiti": 916264702,
+    "legale rappresentante": "Massimo Sigillò Massara"
+  },
+  {
+    "teatro": "Teatro Jolly",
+    "ubicazione": "Via D. Costantino, 54/56",
+    "capienza [posti]": 366,
+    "gestore del teatro": "Soc. Coop. AVIA",
+    "sede legale": "Via D. Costantino, 54/56",
+    "recapiti": "0916376336\n33551239889",
+    "legale rappresentante": "Giovan Battista Nanfa"
+  },
+  {
+    "teatro": "Teatro Lelio",
+    "ubicazione": "Via Furitano, 5/b",
+    "capienza [posti]": 400,
+    "gestore del teatro": "Il Garraffo Soc. Coop.",
+    "sede legale": "Via Furitano, 5/b",
+    "recapiti": 916828958,
+    "legale rappresentante": "Vincenzo Pandolfo"
+  },
+  {
+    "teatro": "Teatro Savio",
+    "ubicazione": "Via G. E. Di Blasi, 102/b",
+    "capienza [posti]": 499,
+    "gestore del teatro": "Ass.ne C.G.S Teatro Savio",
+    "sede legale": "Via G. E. Di Blasi, 102/b",
+    "recapiti": 916768181,
+    "legale rappresentante": "Francesco Giacalone"
+  },
+  {
+    "teatro": "Teatro Zappalà",
+    "ubicazione": "Via Galatea, 6/e",
+    "capienza [posti]": 480,
+    "gestore del teatro": "Ass.ne Teatro Viaggiante Vito Zappalà",
+    "sede legale": "Via Galatea, 6/e",
+    "recapiti": 91451084,
+    "legale rappresentante": "Vito Zappalà"
+  },
+  {
+    "teatro": "Villa Lampedusa",
+    "ubicazione": "Via dei Quartieri 104",
+    "capienza [posti]": 110,
+    "gestore del teatro": "Villa Lampedusa s.r.l.",
+    "sede legale": "Via dei Quartieri 104",
+    "recapiti": "0916888886\n3453472589",
+    "legale rappresentante": "Calogero Franco"
+  }
+]
