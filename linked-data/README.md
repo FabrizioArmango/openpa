@@ -27,7 +27,7 @@
 
 | Data Properties | |
 | --- | --- |
-| vicinoA | rdf:type->rdf:Property; rdfs:domain->pldo:Luogo; rdfs:range->lgdo:Amenity |
+| vicinoA | rdf:type->rdf:Property; rdfs:domain->pldo:Luogo; rdfs:range->lgdo:Amenity ::: Viene utilizzato per descrivere vicinanza di 200metri |
 
 ## Graph 
 #### XML http://palermo.linked-data.eu/graph/
