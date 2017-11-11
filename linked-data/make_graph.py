@@ -34,6 +34,7 @@ dbo = Namespace("http://dbpedia.org/ontology/")
 dbp = Namespace("http://dbpedia.org/property/")
 cpo = Namespace("http://www.comune.palermo.it/ontology/")
 geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
+rdfs = Namespace("http://www.w3.org/2000/01/rdf-schema#")
 pldo = Namespace("http://palermo.linked-data.eu/ontology/")
 ####### ->
 # Namespace Bindings
@@ -41,6 +42,7 @@ g.bind("dbo", dbo)
 g.bind("dbp", dbp)
 g.bind("cpo", cpo)
 g.bind("geo", geo)
+g.bind("rdfs", rdfs)
 
 #added to avoid output ns1
 g.bind("owl", OWL)
@@ -80,7 +82,7 @@ for data_record in churchXML:
     
     #for name in churchName:
     #    gs.add(pldo.nome, Literal(name.text, lang=name.tag))
-    gs.set(pldo.nome, Literal(enName, lang=enTag))
+    gs.set(rdfs.label, Literal(enName, lang=enTag))
     
 
     #gs.set(pldo.immagine, URIRef(data_record.find("IMAGE").text))
@@ -106,9 +108,9 @@ for place in placeList:
         placeURI = urify("http://palermo.linked-data.eu/resource/" + place + "s/", placeName)    
         gs = g.resource(placeURI)
         gs.set(RDF.type, pldo[place.capitalize()])
-        gs.set(pldo.nome, Literal(placeName, lang='it'))
-        placeURI_PA = urify("http://www.comune.palermo.it/resource/" + place + "s/", placeName)
-        gs.set(OWL.sameAs, URIRef(placeURI_PA))
+        gs.set(rdfs.label, Literal(placeName, lang='it'))
+        #placeURI_PA = urify("http://www.comune.palermo.it/resource/" + place + "s/", placeName)
+        #gs.set(OWL.sameAs, URIRef(placeURI_PA))
         
 
         if data_record.find("WEBSITE") is not None:
@@ -146,7 +148,7 @@ for data_record in theatreXML:
     gs = g.resource(theatreURI)
     gs.set(RDF.type, pldo.Teatro)
 
-    gs.set(pldo.nome, Literal(theatreName, lang='it'))
+    gs.set(rdfs.label, Literal(theatreName, lang='it'))
     gs.set(pldo.posti, Literal(data_record.find("SEATS").text, datatype=XSD.nonNegativeInteger))
 
 
