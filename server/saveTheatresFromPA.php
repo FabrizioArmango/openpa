@@ -17,8 +17,12 @@
         $teatro->name = $teatroJSON["teatro"];
         $teatro->address = $teatroJSON["ubicazione"];
         $teatro->seats = $teatroJSON["capienza [posti]"];
-        $teatro->getOtherInfoFromDBPedia();
-        $teatro->getGeoCoord();
+        /*  Deprecati per mancanza di informazioni su DBPedia riguardanti i teatri privati palermitani
+         *  e per mancato rispetto delle licenze delle API di Google Maps. 
+         *  Per il secondo, sono possibili implementazioni con Nominatim.
+         *   $teatro->getOtherInfoFromDBPedia();
+         *   $teatro->getGeoCoord();
+         */
         echo $db->saveTheatre($teatro);
     }
 ?>
