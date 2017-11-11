@@ -1,0 +1,42 @@
+.App {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 0px;
+  text-align: center;
+  font-family: 'Amaranth', sans-serif;  
+}
+
+.App-header {
+  font-family: 'Paytone One', sans-serif;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #D00032;
+  height: 30px;
+  padding: 10px;
+  color: white;
+  position: fixed;
+  margin: auto;
+}
+
+.App-body
+{
+  z-index: 0;
+  position: absolute;
+  top: 90px;
+  padding: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+h2{
+  display: block;
+  margin-top: 0;
+}
+
+a:visited {
+  color:#fff;
+}
