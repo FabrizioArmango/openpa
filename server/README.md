@@ -49,7 +49,7 @@ Inviando una richiesta HTTP GET a questo script è possibile ricevere la lista d
 E' necessario specificare il parametro listOf, le possibili opzioni sono le seguenti:
 - theatres
 - cinemas
-- churchs
+- churches
 - typicalfoods
 - pubs
 - cocktailbars
