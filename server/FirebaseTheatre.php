@@ -24,15 +24,6 @@
             $this->abstract = @$otherInfo["comment"]["it"];
         }
 
-        function getGeoCoord()
-        {
-            $res = file_get_contents('https://hook.io/elsinor/ask-gmaps?address=' . urlencode($this->address));
-            $geoInfo = json_decode($res, true);
-
-            $this->geo['lat'] = $geoInfo["location"]["lat"];
-            $this->geo['lng'] = $geoInfo["location"]["lng"];
-        }
-
         function toFirebaseJSON()
         {
             return json_encode([
