@@ -11,19 +11,7 @@
         public $comment = ""; //DBPEDIA
         public $abstract = ""; //DBPEDIA
         public $geo = [];
-
-        function getOtherInfoFromDBPedia()
-        {
-            $res = file_get_contents('https://hook.io/elsinor/ask-theatre-info?name=' . urlencode($this->name));
-            $otherInfo = json_decode($res, true);
-            
-            $this->image = @$otherInfo["image"];
-            $this->since = @$otherInfo["since"];
-            $this->architect = @$otherInfo["architect"];
-            $this->comment = @$otherInfo["comment"]["it"];
-            $this->abstract = @$otherInfo["comment"]["it"];
-        }
-
+        
         function toFirebaseJSON()
         {
             return json_encode([
