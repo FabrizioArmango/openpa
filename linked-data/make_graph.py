@@ -109,8 +109,9 @@ for place in placeList:
         gs = g.resource(placeURI)
         gs.set(RDF.type, pldo[place.capitalize()])
         gs.set(rdfs.label, Literal(placeName, lang='it'))
-        #placeURI_PA = urify("http://www.comune.palermo.it/resource/" + place + "s/", placeName)
+        #URI_PA = urify("http://www.comune.palermo.it/resource/" + place + "s/", placeName)
         #gs.set(OWL.sameAs, URIRef(placeURI_PA))
+        gs.set(rdfs.seeAlso, "https://www.comune.palermo.it/opendata_dld.php?id=308")
         
 
         if data_record.find("WEBSITE") is not None:
@@ -144,12 +145,14 @@ for place in placeList:
 for data_record in theatreXML:
     theatreName = data_record.find("NAME").text
     print(theatreName)
-    theatreURI = urify("http://www.comune.palermo.it/resource/theatres/", theatreName)
+    theatreURI = urify("http://www.palermo.linked-data.eu/resource/theatres/", theatreName)
     gs = g.resource(theatreURI)
     gs.set(RDF.type, pldo.Teatro)
 
     gs.set(rdfs.label, Literal(theatreName, lang='it'))
     gs.set(pldo.posti, Literal(data_record.find("SEATS").text, datatype=XSD.nonNegativeInteger))
+    #sourceURI = urify("http://www.palermo.linked-data.eu/resource/theatres/", theatreName)
+    gs.set(rdfs.seeAlso, "https://comune.palermo.it/opendata_dld.php?id=547")
 
 
     if data_record.find("LOCATION") is not None:
