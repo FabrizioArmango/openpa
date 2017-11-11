@@ -4,7 +4,8 @@ Questo hook riceve come parametro da url country e regione, successivamente tras
 
 ## Amenities
 ### amenityHook
-
+Questo hook lavora esattamente nello steso modo del precedente, con l'unica differenza che i parametri sono la latitudine e la longitudine del luogo di interesse, il raggio d'azione nella query è settato a 200m.
 ## Churches
 ### churchHook
+Come i precedenti a meno di parametri.
 https://hook.io/elsinor/churchhook
