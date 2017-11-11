@@ -22,7 +22,7 @@
 | Chiesa | rdf:type->owl:Class; rdfs:subClassOf->pldo:Luogo |
 | Cinema | rdf:type->owl:Class; rdfs:subClassOf->pldo:Luogo |
 
-| Data Properties |
+| Data Properties | |
 | --- | --- |
 | vicinoA | rdf:type->rdf:Property; rdfs:domain->pldo:Luogo; rdfs:range->lgdo:Amenity |
 
