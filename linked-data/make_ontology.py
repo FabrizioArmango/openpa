@@ -63,13 +63,6 @@ gs = g.resource(pldo.CiboTipico)
 gs.set(RDF.type, RDF.Class)
 gs.set(RDFS.subClassOf, pldo.Risorsa)
 
-##### Proprietà 
-# nome
-gs = g.resource(pldo.nome)
-gs.set(RDF.type, RDFS.Property)
-gs.set(RDFS.domain, pldo.Risorsa)
-gs.set(RDFS.range, RDFS.Literal)
-
 # vicinoA
 gs = g.resource(pldo.vicinoA)
 gs.set(RDF.type, RDFS.Property)
