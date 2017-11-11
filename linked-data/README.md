@@ -1,4 +1,7 @@
 ## Ontology 
+#### XML http://palermo.linked-data.eu/ontology/
+#### Turtle http://palermo.linked-data.eu/ontology/ontology.ttl
+
 | Namespace Declarations | |
 | --- | --- |
 | ontology | http://palermo.linked-data.eu/ontology/ | 
@@ -26,12 +29,7 @@
 | --- | --- |
 | vicinoA | rdf:type->rdf:Property; rdfs:domain->pldo:Luogo; rdfs:range->lgdo:Amenity |
 
-#### XML http://palermo.linked-data.eu/ontology/
-
-#### Turtle http://palermo.linked-data.eu/ontology/ontology.ttl
-
 ## Graph 
 #### XML http://palermo.linked-data.eu/graph/
-
 #### Turtle http://palermo.linked-data.eu/graph/grafo.ttl
 
