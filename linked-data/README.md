@@ -47,7 +47,7 @@
 | CocktailBar | rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type |
 | Enoteca |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
 | Restaurant |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
-| Teatro | rdf:type->owl:Class; rdfs:subClassOf->pldo:Luogo |
+| Teatro | rdf:Description; pldo:vicinoA; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:location; rdf:type; pldo:posti |
 | Pub |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
 | Discoteca |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
 | Chiesa | rdf:Description; pldo:vicinoA; rdfs:label; owl:sameAs; rdf:type  |
