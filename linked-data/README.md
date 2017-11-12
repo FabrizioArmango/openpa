@@ -33,3 +33,24 @@
 #### XML http://palermo.linked-data.eu/graph/
 #### Turtle http://palermo.linked-data.eu/graph/grafo.ttl
 
+| Namespace Declarations | |
+| --- | --- |
+| pldo | http://palermo.linked-data.eu/ontology/ | 
+| dbp | http://dbpedia.org/property/ |
+| dbo | http://dbpedia.org/ontology/ |
+| rdf | http://www.w3.org/1999/02/22-rdf-syntax-ns# |
+| rdfs | http://www.w3.org/2000/01/rdf-schema# |
+| geo | http://www.w3.org/2003/01/geo/wgs84_pos# |
+
+| Classes | |
+| --- | --- |
+| CocktailBar | rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type |
+| Enoteca |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
+| Restaurant |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
+| Teatro | rdf:type->owl:Class; rdfs:subClassOf->pldo:Luogo |
+| Pub |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
+| Discoteca |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type  |
+| Chiesa | rdf:Description; pldo:vicinoA; rdfs:label; owl:sameAs; rdf:type  |
+| Cinema |  rdf:Description; pldo:vicinoA; dbp:City; geo:lng; geo:lat; rdfs:label; owl:seeAlso; dbp:website; dbp:location; dbp:email; rdf:type |
+
+
