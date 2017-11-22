@@ -46,17 +46,17 @@ gs.set(RDFS.sublClassOf, pldo.Luogo)
 # Cibo da strada
 gs = g.resource(pldo.StreetFood)
 gs.set(RDF.type, RDF.Class)
-gs.set(RDFS.sublClassOf, pldo.Luogo)
+gs.set(RDFS.subClassOf, pldo.Luogo)
 
 # Ristoranti
-gs = g.resource(pldo.Restaurant)
+gs = g.resource(pldo.Ristorante)
 gs.set(RDF.type, RDF.Class)
-gs.set(RDFS.sublClassOf, pldo.Luogo)
+gs.set(RDFS.subClassOf, pldo.Luogo)
 
 # Discoteca
 gs = g.resource(pldo.Discoteca)
 gs.set(RDF.type, RDF.Class)
-gs.set(RDFS.sublClassOf, pldo.Luogo)
+gs.set(RDFS.subClassOf, pldo.Luogo)
 
 # CiboTipico
 gs = g.resource(pldo.CiboTipico)
@@ -67,4 +67,12 @@ gs.set(RDFS.subClassOf, pldo.Risorsa)
 gs = g.resource(pldo.vicinoA)
 gs.set(RDF.type, RDFS.Property)
 gs.set(RDFS.domain, pldo.Luogo)
-gs.set(RDFS.range, lgdo:Amenity)
+gs.set(RDFS.range, lgdo.Amenity)
+
+# posti
+gs = g.resource(pldo.posti)
+gs.set(RDF.type, RDFS.Property)
+gs.set(RDFS.domain, pldo.Teatro)
+gs.set(RDFS.range, RDFS.Literal) # Literal, datatype=XSD.nonNegativeInteger
+
+
